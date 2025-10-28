@@ -6,6 +6,14 @@ import { ProductForm } from "./ProductForm";
 
 export const ProductApp = ({ title }) => {
   const [products, setProducts] = useState([]);
+
+  const [productSelected, setProductSelected] = useState({
+    id: 0,
+    name: "",
+    description: "",
+    price: "",
+  });
+
   useEffect(() => {
     const result = listProduct();
     setProducts(result);
@@ -13,12 +21,27 @@ export const ProductApp = ({ title }) => {
 
   const handlerAddProduct = (product) => {
     console.log(product);
-    setProducts([...products, { ...product }]);
+
+    if (product.id > 0) {
+      setProducts(
+        products.map((prod) => {
+          if (prod.id == product.id) {
+            return { ...product };
+          }
+          return prod;
+        })
+      );
+    } else {
+      setProducts([...products, { ...product, id: new Date().getTime() }]);
+    }
   };
 
-  const handlerRemoveProduct = (name) => {
-    console.log(name);
-    setProducts(products.filter((product) => product.name != name));
+  const handlerRemoveProduct = (id) => {
+    setProducts(products.filter((product) => product.id != id));
+  };
+
+  const handlerProductSelected = (product) => {
+    setProductSelected({ ...product });
   };
 
   return (
@@ -26,12 +49,16 @@ export const ProductApp = ({ title }) => {
       <h1> {title} </h1>
       <div>
         <div>
-          <ProductForm handlerAdd={handlerAddProduct} />
+          <ProductForm
+            handlerAdd={handlerAddProduct}
+            productSelected={productSelected}
+          />
         </div>
         <div>
           <ProductGrid
             products={products}
             handlerRemove={handlerRemoveProduct}
+            handlerProductSelected={handlerProductSelected}
           />
         </div>
       </div>

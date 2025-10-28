@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const initialDataForm = {
+  id: 0,
   name: "",
   description: "",
   price: "",
 };
-export const ProductForm = ({ handlerAdd }) => {
+export const ProductForm = ({ handlerAdd, productSelected }) => {
   const [form, setForm] = useState(initialDataForm);
   const { name, description, price } = form;
+
+  useEffect(() => {
+    setForm(productSelected);
+  }, [productSelected]);
 
   return (
     <form
@@ -17,7 +22,6 @@ export const ProductForm = ({ handlerAdd }) => {
           alert("Debe completar los datos del dormulario");
           return;
         }
-        // console.log(form);
         handlerAdd(form);
         setForm(initialDataForm);
       }}
@@ -68,7 +72,7 @@ export const ProductForm = ({ handlerAdd }) => {
       </div>
 
       <div>
-        <button type="submit">Create</button>
+        <button type="submit">Save</button>
       </div>
     </form>
   );
