@@ -45,21 +45,27 @@ export const ProductApp = ({ title }) => {
   };
 
   return (
-    <div>
-      <h1> {title} </h1>
-      <div>
-        <div>
+    <div className="container my-4">
+      <h2> {title} </h2>
+      <div className="row">
+        <div className="col">
           <ProductForm
             handlerAdd={handlerAddProduct}
             productSelected={productSelected}
           />
         </div>
-        <div>
-          <ProductGrid
-            products={products}
-            handlerRemove={handlerRemoveProduct}
-            handlerProductSelected={handlerProductSelected}
-          />
+        <div className="col">
+          {products.length > 0 ? (
+            <ProductGrid
+              products={products}
+              handlerRemove={handlerRemoveProduct}
+              handlerProductSelected={handlerProductSelected}
+            />
+          ) : (
+            <div className="alert alert-warning">
+              NO HAY PRODUCTOS EN EL SISTEMA!
+            </div>
+          )}
         </div>
       </div>
     </div>

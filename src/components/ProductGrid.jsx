@@ -7,7 +7,7 @@ export const ProductGrid = ({
   handlerProductSelected,
 }) => {
   return (
-    <table>
+    <table className="table table-hover table-striped">
       <thead>
         <tr>
           <th>name</th>

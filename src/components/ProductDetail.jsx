@@ -11,10 +11,20 @@ export const ProductDetail = ({
       <td>{product.description}</td>
       <td>{product.price}</td>
       <td>
-        <button onClick={() => handlerProductSelected(product)}>Editar</button>
+        <button
+          className="btn btn-secondary btn-sm"
+          onClick={() => handlerProductSelected(product)}
+        >
+          Editar
+        </button>
       </td>
       <td>
-        <button onClick={() => handlerRemove(product.id)}>remove</button>
+        <button
+          className="btn btn-danger btn-sm"
+          onClick={() => handlerRemove(product.id)}
+        >
+          remove
+        </button>
       </td>
     </tr>
   );
