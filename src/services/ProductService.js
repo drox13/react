@@ -29,3 +29,17 @@ export const findAll = async () => {
         console.log(error);
     }
 }
+
+export const create = async ({ name, description, price }) => {
+    try {
+        const response = await axios.post(baseUrl, {
+            name,
+            description,
+            price
+        });
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+    return undefined;
+}
