@@ -43,3 +43,17 @@ export const create = async ({ name, description, price }) => {
     }
     return undefined;
 }
+
+export const update = async ({ id, name, description, price }) => {
+    try {
+        const response = await axios.put(`${baseUrl}/${id}`, {
+            name,
+            description,
+            price
+        });
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+    return undefined;
+}
