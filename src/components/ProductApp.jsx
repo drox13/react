@@ -3,6 +3,7 @@ import {
   create,
   findAll,
   listProduct,
+  remove,
   update,
 } from "../services/ProductService";
 import { ProductGrid } from "./ProductGrid";
@@ -49,6 +50,7 @@ export const ProductApp = ({ title }) => {
   };
 
   const handlerRemoveProduct = (id) => {
+    remove(id);
     setProducts(products.filter((product) => product.id != id));
   };
 
